@@ -4,18 +4,19 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const images = [
-    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1000&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1000&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1000&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1000&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?q=80&w=1000&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1000&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1000&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1000&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?q=80&w=1000&auto=format&fit=crop"
+    "/images/photo-1505964253539-4ca5a36328dd.avif",
+    "/images/des-son-arrive-sur-scene-hamza-est-alle-au-contact-de-son-jeune-public-1696896629.jpg",
+    "/images/photo-1534528741775-53994a69daeb.webp",
+    "/images/photo-1549605735-a452d45d5efb.avif",
+    "/images/photo-1620281408936-b34691bbb34a.avif",
+    "/images/photo-1621618963067-137bd4c9d04a.avif",
+    "/images/photo-1621619054919-167f2fcf135c.jpeg",
+    "/images/0x1900-000000-80-0-0-1-1.jpg.webp",
+    "/images/photo-1667833966178-f98135a582f8.avif",
+    "/images/photo-1684853989999-750020879283.avif",
+    "/images/photo-1735838466022-55227f38d1ad.avif",
+    "/images/theodora-nnoman1-chang_martin_-fete-de-lhumanite.jpg.webp",
+
 ];
 
 export default function ImageGrid() {

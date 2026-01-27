@@ -3,37 +3,10 @@ import ImageGrid from "@/components/ImageGrid";
 import HeroTitle from "@/components/HeroTitle";
 import DailyPlayer from "@/components/DailyPlayer";
 import Footer from "@/components/Footer";
-
-async function getDailyTrack() {
-  const baseUrl = process.env.VERCEL_URL 
-    ? `https://${process.env.VERCEL_URL}` 
-    : "http://localhost:3000";
-  
-  try {
-    const response = await fetch(`${baseUrl}/api/track`, {
-      next: { revalidate: 60 }, // Revalidate every minute
-    });
-    
-    if (!response.ok) {
-      throw new Error("Failed to fetch");
-    }
-    
-    return response.json();
-  } catch {
-    // Fallback si l'API échoue
-    return {
-      title: "Son du jour",
-      artist: "1 Son Par Jour",
-      preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-      cover: "/images/photo-1667833966178-f98135a582f8.avif",
-      nextUpdateAt: new Date().toISOString(),
-      deezerLink: null,
-    };
-  }
-}
+import { getCurrentTrack } from "@/lib/track";
 
 export default async function Home() {
-  const track = await getDailyTrack();
+  const track = await getCurrentTrack();
   const today = new Date().toLocaleDateString("fr-FR", {
     day: "numeric",
     month: "long",

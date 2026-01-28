@@ -24,6 +24,7 @@ export default function HeroTitle({ title, cover, artist }: HeroTitleProps) {
                         src={cover}
                         alt={`Cover de ${title}`}
                         fill
+                        sizes="(max-width: 640px) 128px, (max-width: 768px) 192px, 256px"
                         className="object-cover"
                         priority
                     />

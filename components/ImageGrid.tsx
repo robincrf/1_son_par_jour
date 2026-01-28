@@ -35,6 +35,8 @@ export default function ImageGrid() {
                             src={src}
                             alt="Fashion Visual"
                             fill
+                            sizes="(max-width: 768px) 33vw, (max-width: 1024px) 25vw, 16vw"
+                            priority={i < 4}
                             className="object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
                         />
                         <div className="absolute inset-0 bg-black/50" />

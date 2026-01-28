@@ -86,7 +86,7 @@ export default function DailyPlayer({ url, nextUpdateAt }: DailyPlayerProps) {
         const checkForUpdate = () => {
             const now = new Date();
             const next = new Date(nextUpdateAt);
-            
+
             if (now >= next) {
                 window.location.reload();
             }
@@ -107,7 +107,7 @@ export default function DailyPlayer({ url, nextUpdateAt }: DailyPlayerProps) {
     };
 
     return (
-        <div className="absolute bottom-8 left-0 right-0 flex flex-col items-center justify-center z-20 px-8">
+        <div className="absolute bottom-28 md:bottom-8 left-0 right-0 flex flex-col items-center justify-center z-20 px-8">
             {/* Countdown */}
             <motion.div
                 initial={{ opacity: 0, y: 10 }}
@@ -121,7 +121,7 @@ export default function DailyPlayer({ url, nextUpdateAt }: DailyPlayerProps) {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={togglePlay}
-                className="w-16 h-16 flex items-center justify-center bg-white text-black rounded-full mb-4 hover:bg-white/90 transition-colors"
+                className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center bg-white text-black rounded-full mb-4 hover:bg-white/90 transition-colors"
             >
                 {playing ? (
                     <Pause className="w-6 h-6 fill-current" />

@@ -15,10 +15,10 @@ export default function HeroTitle({ title, cover, artist }: HeroTitleProps) {
             {/* Cover de l'album */}
             {cover && (
                 <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
+                    initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
-                    className="relative w-48 h-48 md:w-64 md:h-64 mb-6 rounded-lg overflow-hidden shadow-2xl"
+                    transition={{ delay: 0, duration: 0.5, ease: "easeOut" }}
+                    className="relative w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 mb-4 rounded-lg overflow-hidden shadow-2xl"
                 >
                     <Image
                         src={cover}
@@ -29,27 +29,27 @@ export default function HeroTitle({ title, cover, artist }: HeroTitleProps) {
                     />
                 </motion.div>
             )}
-            
+
             <motion.h1
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.5, duration: 1, ease: "easeOut" }}
+                transition={{ delay: 0.1, duration: 0.5, ease: "easeOut" }}
                 className="text-[8vw] md:text-[4vw] leading-[0.9] font-serif text-center text-white mix-blend-difference tracking-tighter"
             >
                 {title.toUpperCase()}
             </motion.h1>
-            
+
             {artist && (
                 <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 0.8, duration: 1 }}
+                    transition={{ delay: 0.2, duration: 0.5 }}
                     className="mt-2 text-sm md:text-base text-white/80"
                 >
                     {artist}
                 </motion.p>
             )}
-            
+
             <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

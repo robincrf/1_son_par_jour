@@ -9,7 +9,7 @@ export default function CardLayout({ children, className }: { children: React.Re
             <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 className={cn(
                     "relative w-full h-full max-w-[1400px] max-h-[900px] overflow-hidden bg-[#0A0A0A] border-[1px] border-white/10 md:border-white rounded-[2rem] shadow-2xl",
                     className

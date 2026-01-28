@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { LazyMotionDiv } from "@/components/LazyMotion";
 
 interface FooterProps {
     artist: string;
@@ -23,7 +23,7 @@ function DeezerIcon({ className }: { className?: string }) {
 export default function Footer({ artist, date, deezerLink }: FooterProps) {
     return (
         <div className="absolute bottom-6 md:bottom-10 left-8 right-8 flex justify-between items-end z-20 pointer-events-none text-white mix-blend-difference">
-            <motion.div
+            <LazyMotionDiv
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.2, duration: 1 }}
@@ -31,9 +31,9 @@ export default function Footer({ artist, date, deezerLink }: FooterProps) {
             >
                 <span className="font-bold uppercase mb-1">{artist}</span>
                 <span className="opacity-60">{date}</span>
-            </motion.div>
+            </LazyMotionDiv>
 
-            <motion.div
+            <LazyMotionDiv
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.2, duration: 1 }}
@@ -51,7 +51,7 @@ export default function Footer({ artist, date, deezerLink }: FooterProps) {
                     </a>
                 )}
                 <span className="text-[10px] opacity-40">Powered by Deezer</span>
-            </motion.div>
+            </LazyMotionDiv>
         </div>
     );
 }

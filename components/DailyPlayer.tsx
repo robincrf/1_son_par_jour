@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Howl } from "howler";
 import { Play, Pause } from "lucide-react";
-import { motion } from "framer-motion";
+import { LazyMotionDiv } from "@/components/LazyMotion";
 
 interface DailyPlayerProps {
     url: string;
@@ -109,30 +109,28 @@ export default function DailyPlayer({ url, nextUpdateAt }: DailyPlayerProps) {
     return (
         <div className="absolute bottom-28 md:bottom-8 left-0 right-0 flex flex-col items-center justify-center z-20 px-8">
             {/* Countdown */}
-            <motion.div
+            <LazyMotionDiv
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="text-white/60 text-sm mb-4 font-mono"
             >
                 {countdown}
-            </motion.div>
+            </LazyMotionDiv>
 
-            <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
+            <button
                 onClick={togglePlay}
-                className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center bg-white text-black rounded-full mb-4 hover:bg-white/90 transition-colors"
+                className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center bg-white text-black rounded-full mb-4 hover:bg-white/90 hover:scale-110 active:scale-95 transition-all duration-200"
             >
                 {playing ? (
                     <Pause className="w-6 h-6 fill-current" />
                 ) : (
                     <Play className="w-6 h-6 fill-current ml-1" />
                 )}
-            </motion.button>
+            </button>
 
             <div className="w-full max-w-md h-1 bg-white/20 rounded-full overflow-hidden">
-                <motion.div
-                    className="h-full bg-white"
+                <div
+                    className="h-full bg-white transition-all duration-100"
                     style={{ width: `${progress}%` }}
                 />
             </div>

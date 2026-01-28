@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { LazyMotionDiv, LazyMotionH1, LazyMotionP } from "@/components/LazyMotion";
 import Image from "next/image";
 
 interface HeroTitleProps {
@@ -14,7 +14,7 @@ export default function HeroTitle({ title, cover, artist }: HeroTitleProps) {
         <div className="relative z-10 flex flex-col items-center justify-center p-4">
             {/* Cover de l'album */}
             {cover && (
-                <motion.div
+                <LazyMotionDiv
                     initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ delay: 0, duration: 0.5, ease: "easeOut" }}
@@ -28,37 +28,37 @@ export default function HeroTitle({ title, cover, artist }: HeroTitleProps) {
                         className="object-cover"
                         priority
                     />
-                </motion.div>
+                </LazyMotionDiv>
             )}
 
-            <motion.h1
+            <LazyMotionH1
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.1, duration: 0.5, ease: "easeOut" }}
                 className="text-[8vw] md:text-[4vw] leading-[0.9] font-serif text-center text-white mix-blend-difference tracking-tighter"
             >
                 {title.toUpperCase()}
-            </motion.h1>
+            </LazyMotionH1>
 
             {artist && (
-                <motion.p
+                <LazyMotionP
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2, duration: 0.5 }}
                     className="mt-2 text-sm md:text-base text-white/80"
                 >
                     {artist}
-                </motion.p>
+                </LazyMotionP>
             )}
 
-            <motion.p
+            <LazyMotionP
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1, duration: 1 }}
                 className="mt-4 text-xs md:text-sm tracking-[0.3em] text-white/70 uppercase"
             >
                 Daily Music Drop
-            </motion.p>
+            </LazyMotionP>
         </div>
     );
 }

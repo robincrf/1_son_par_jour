@@ -1,13 +1,35 @@
 // Liste des musiques à jouer (une par jour, dans l'ordre)
-const TRACK_LIST = [
-    { artist: "63og", title: "poukwa" },
-    { artist: "63og", title: "unejournée" },
-    { artist: "Gouap RTTCLAN", title: "Scarface 2" },
-    { artist: "Jeune Morty", title: "biber" },
+export const TRACK_LIST = [
+    { artist: "63og", title: "poukwa", slug: "63og" },
+    { artist: "63og", title: "unejournée", slug: "63og" },
+    { artist: "Gouap RTTCLAN", title: "Scarface 2", slug: "gouap-rttclan" },
+    { artist: "Jeune Morty", title: "biber", slug: "jeune-morty" },
+];
+
+// Liste des artistes uniques avec leurs informations
+export const ARTISTS = [
+    { 
+        slug: "63og", 
+        name: "63OG",
+        description: "63OG est un artiste émergent de la scène rap française, connu pour son style unique mêlant mélodies envoûtantes et textes introspectifs.",
+        genre: "Rap / Hip-Hop"
+    },
+    { 
+        slug: "gouap-rttclan", 
+        name: "Gouap RTTCLAN",
+        description: "Gouap RTTCLAN représente la nouvelle vague du rap français avec des productions innovantes et un flow reconnaissable.",
+        genre: "Rap / Trap"
+    },
+    { 
+        slug: "jeune-morty", 
+        name: "Jeune Morty",
+        description: "Jeune Morty apporte une touche fraîche à la scène musicale avec ses sonorités modernes et ses textes percutants.",
+        genre: "Rap / Cloud Rap"
+    },
 ];
 
 // Date de départ (première musique)
-const START_DATE = new Date("2026-01-27");
+export const START_DATE = new Date("2026-01-27");
 
 function getDaysSinceStart(): number {
     const now = new Date();
@@ -74,6 +96,7 @@ export async function getCurrentTrack() {
         return {
             title: track.title,
             artist: track.artist.name,
+            artistSlug: trackInfo.slug,
             preview: track.preview,
             cover: track.album.cover_xl || track.album.cover_big,
             album: track.album.title,
@@ -88,6 +111,7 @@ export async function getCurrentTrack() {
         return {
             title: "Son du jour",
             artist: "Artiste inconnu",
+            artistSlug: "unknown",
             preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
             cover: "/images/photo-1667833966178-f98135a582f8.avif",
             album: "Album",
@@ -97,4 +121,69 @@ export async function getCurrentTrack() {
             nextUpdateAt: getNextUpdateTime(),
         };
     }
+}
+
+// Récupérer l'historique des sons passés
+export async function getArchiveTracks() {
+    const daysSinceStart = getDaysSinceStart();
+    const hasPassedNoon = shouldUpdate();
+    const currentIndex = hasPassedNoon ? daysSinceStart : daysSinceStart - 1;
+    
+    const archiveTracks = [];
+    
+    for (let i = Math.min(currentIndex, TRACK_LIST.length - 1); i >= 0; i--) {
+        const trackInfo = TRACK_LIST[i];
+        const date = new Date(START_DATE);
+        date.setDate(date.getDate() + i);
+        
+        try {
+            const track = await searchTrack(trackInfo.artist, trackInfo.title);
+            if (track) {
+                archiveTracks.push({
+                    date: date.toISOString().split("T")[0],
+                    title: track.title,
+                    artist: track.artist.name,
+                    artistSlug: trackInfo.slug,
+                    cover: track.album.cover_big || track.album.cover_medium,
+                    deezerLink: track.link,
+                    album: track.album.title,
+                });
+            }
+        } catch {
+            // Skip failed tracks
+        }
+    }
+    
+    return archiveTracks;
+}
+
+// Récupérer les sons d'un artiste spécifique
+export async function getTracksByArtist(artistSlug: string) {
+    const artistTracks = TRACK_LIST.filter((t) => t.slug === artistSlug);
+    const tracks = [];
+    
+    for (const trackInfo of artistTracks) {
+        try {
+            const track = await searchTrack(trackInfo.artist, trackInfo.title);
+            if (track) {
+                tracks.push({
+                    title: track.title,
+                    artist: track.artist.name,
+                    cover: track.album.cover_big || track.album.cover_medium,
+                    deezerLink: track.link,
+                    album: track.album.title,
+                    preview: track.preview,
+                });
+            }
+        } catch {
+            // Skip failed tracks
+        }
+    }
+    
+    return tracks;
+}
+
+// Récupérer les infos d'un artiste
+export function getArtistBySlug(slug: string) {
+    return ARTISTS.find((a) => a.slug === slug) || null;
 }
